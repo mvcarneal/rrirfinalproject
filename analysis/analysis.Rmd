@@ -1,0 +1,24 @@
+---
+title: "Dragonfly Territory Ananlysis"
+Author: Maggie Vincent
+Term: Fall 2020
+Course: Reproducible Research in R
+output: pdf_document
+---
+
+# Read in Data from BioTime
+
+rawDragonfly <- `rawdata.(1)`
+
+install.packages('plyr')
+install.packages('dplyr')
+
+library('plyr')
+library('dplyr')
+
+coenigrion <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Coenagrion puella')
+ischnura <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Ischnura elegans')
+lestes <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Lestes sponsa')
+libelsympetrum <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Libellula quadrimaculata')
+sympetrum <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Sympetrum striolatum')
+
