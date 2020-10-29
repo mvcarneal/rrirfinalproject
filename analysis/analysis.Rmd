@@ -1,6 +1,6 @@
 ---
 title: "Dragonfly Territory Ananlysis"
-Author: Maggie Vincent
+Author: "Maggie Vincent"
 Term: Fall 2020
 Course: Reproducible Research in R
 output: pdf_document
@@ -21,4 +21,37 @@ ischnura <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Ischnura elegans')
 lestes <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Lestes sponsa')
 libelsympetrum <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Libellula quadrimaculata')
 sympetrum <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Sympetrum striolatum')
+
+# Make a rough plot to visualize the data
+
+par(mfrow=c(2,3))
+plot(ischnura$YEAR, ischnura$ABUNDANCE)
+plot(coenigrion$YEAR, coenigrion$ABUNDANCE)
+plot(lestes$YEAR, lestes$ABUNDANCE)
+plot(libellula$YEAR, libellula$ABUNDANCE)
+plot(sympetrum$YEAR, sympetrum$ABUNDANCE)
+
+# I don't like that the y-axes are scaled differently and I want to change the axis labels 
+
+
+
+# subsetting down the data.frames, since I need to do it more than once, I'll write a simple function
+
+getAbundanceYear <- function(dat, x = 'ABUNDANCE', y = 'YEAR'){
+                    tmp <- subset(dat, select = c(x, y))
+                    return(tmp)
+}
+
+ischnuraAY <- getAbundanceYear(ischnura)
+coenigrionAY <- getAbundanceYear(coenigrion)
+lestesAY <- getAbundanceYear(lestes)
+libellulaAY <- getAbundanceYear(libellula)
+sympetrumAY <- getAbundanceYear(sympetrum)
+
+
+
+
+# the current data.frames are different lengths
+# this is because the years without observations of the species were not put in as zeroes
+# after consultation with Tad Dallas, I will be changing the data.frames to length 27 (observation years) with zeroes for the missing years
 
