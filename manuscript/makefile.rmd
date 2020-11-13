@@ -1,0 +1,21 @@
+TEMPLATE=tufte-handout.template
+PDFS:=$(patsubst %.Rmd,%.pdf,$(wildcard *.Rmd))
+
+all: $(PDFS)
+
+clean:
+	rm -rf *.tex *.bbl *.blg *.aux *.out *.log *.spl *.md figure/ cache/
+
+cleanall: clean
+	rm $(PDFS)
+
+%.pdf: %.tex
+	pdflatex $*.tex
+
+%.tex: %.md
+	pandoc -o $*.tex --template=$(TEMPLATE) $*.md
+	sed -i -e 's/figure}.*/marginfigure}/' $*.tex
+
+%.md: %.Rmd
+	R -e "library(knitr)" \
+	  -e "knit('$*.Rmd')"

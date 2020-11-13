@@ -1,0 +1,92 @@
+---
+title: ""
+Author: "Maggie Vincent"
+Term: Fall 2020
+Course: Reproducible Research in R
+output: pdf_document
+---
+
+# Read in Data from BioTime - Single study
+## this was downloaded from 'http://biotime.st-andrews.ac.uk/taxa.php?10' on 4 October 2020
+## study name == 'The development of dragonfly communities and the consequences of territorial behaviour'
+## study ID == ''
+## BioTIME does not have an API, making this necessary
+
+rawDragonfly <- `DataSingleStudy`
+
+install.packages('plyr')
+install.packages('dplyr')
+
+library('plyr')
+library('dplyr')
+
+coenigrion <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Coenagrion puella')
+ischnura <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Ischnura elegans')
+lestes <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Lestes sponsa')
+libellula <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Libellula quadrimaculata')
+sympetrum <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Sympetrum striolatum')
+
+# Make a rough plot to visualize the data
+
+par(mfrow=c(2,3))
+plot(ischnura$YEAR, ischnura$ABUNDANCE)
+plot(coenigrion$YEAR, coenigrion$ABUNDANCE)
+plot(lestes$YEAR, lestes$ABUNDANCE)
+plot(libellula$YEAR, libellula$ABUNDANCE)
+plot(sympetrum$YEAR, sympetrum$ABUNDANCE)
+
+# I don't like that the y-axes are scaled differently and I want to change the axis labels 
+
+
+
+# subsetting down the data.frames, since I need to do it more than once, I'll write a simple function
+
+getAbundanceYear <- function(dat, x = 'ABUNDANCE', y = 'YEAR'){
+                    tmp <- subset(dat, select = c(x, y))
+                    return(tmp)
+}
+
+ischnuraAY <- getAbundanceYear(ischnura)
+coenigrionAY <- getAbundanceYear(coenigrion)
+lestesAY <- getAbundanceYear(lestes)
+libellulaAY <- getAbundanceYear(libellula)
+sympetrumAY <- getAbundanceYear(sympetrum)
+
+
+
+
+# the current data.frames are different lengths
+# this is because the years without observations of the species were not put in as zeroes
+# after consultation with Tad Dallas, I will be changing the data.frames to length 27 (observation years) with zeroes for the missing years
+
+
+row1959 <- c(0, 1959)
+row1960 <- c(0, 1960)
+row1961 <- c(0, 1961)
+row1962 <- c(0, 1962)
+row1963 <- c(0, 1963)
+
+row1972 <- c(0, 1972)
+row1974 <- c(0, 1974)
+
+coenigronCompAY <- rbind(row1959, row1960, row1961, row1962, coenigrionAY)
+ischnuraCompAY <- rbind(row1959, row1960, row1961, ischnuraAY)
+lestesCompAY <- rbind(row1959, row1960, row1961, row1962, row1963, lestesAY)
+# libellula will be dealt with differently because it is missing rows within the dataframe
+sympetrumCompAY <- rbind(row1959, row1960, row1961, sympetrumAY)
+
+prelibellulaCompAY <- rbind(row1960, row1972, row1974, libellulaAY)
+# this will add the rows I want, but now in chronological order
+libellulaCompAY <- dplyr::arrange(prelibellulaCompAY, YEAR)
+
+
+# there are species missing from this, they need to be added separately
+
+brachytronAbundance <- c(0,0,0,0,0,0,0,0,0,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+pyrrhosomaAbundance <- c(0,0,3,20,18,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+aeshnaAbundance <- c(0,0,0,0,1,2,3,1,1,2,3,1,5,1,2,0,0,0,1,1,1,0,2,1,1,3,1,2,2,2)
+
+
+
+
+
