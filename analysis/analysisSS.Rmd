@@ -21,20 +21,20 @@ install.packages('dplyr')
 library('plyr')
 library('dplyr')
 
-coenigrion <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Coenagrion puella')
-ischnura <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Ischnura elegans')
-lestes <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Lestes sponsa')
-libellula <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Libellula quadrimaculata')
-sympetrum <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Sympetrum striolatum')
+cPuella <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Coenagrion puella')
+iElegans <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Ischnura elegans')
+lSponsa <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Lestes sponsa')
+lQuadrimaculata <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Libellula quadrimaculata')
+sStriolatum <- dplyr::filter(rawDragonfly, GENUS_SPECIES == 'Sympetrum striolatum')
 
 # Make a rough plot to visualize the data
 
 par(mfrow=c(2,3))
-plot(ischnura$YEAR, ischnura$ABUNDANCE)
-plot(coenigrion$YEAR, coenigrion$ABUNDANCE)
-plot(lestes$YEAR, lestes$ABUNDANCE)
-plot(libellula$YEAR, libellula$ABUNDANCE)
-plot(sympetrum$YEAR, sympetrum$ABUNDANCE)
+plot(iElegans$YEAR, iElegans$ABUNDANCE)
+plot(cPuella$YEAR, cPuella$ABUNDANCE)
+plot(lSponsa$YEAR, lSponsa$ABUNDANCE)
+plot(lQuadrimaculata$YEAR, lQuadrimaculata$ABUNDANCE)
+plot(sStriolatum$YEAR, sStriolatum$ABUNDANCE)
 
 # I don't like that the y-axes are scaled differently and I want to change the axis labels 
 
@@ -47,12 +47,19 @@ getAbundanceYear <- function(dat, x = 'ABUNDANCE', y = 'YEAR'){
                     return(tmp)
 }
 
-ischnuraAY <- getAbundanceYear(ischnura)
-coenigrionAY <- getAbundanceYear(coenigrion)
-lestesAY <- getAbundanceYear(lestes)
-libellulaAY <- getAbundanceYear(libellula)
-sympetrumAY <- getAbundanceYear(sympetrum)
+iElegansAY <- getAbundanceYear(iElegans)
+cPuellaAY <- getAbundanceYear(cPuella)
+lSponsaAY <- getAbundanceYear(lSponsa)
+lQuadrimaculataAY <- getAbundanceYear(lQuadrimaculata)
+sStriolatumAY <- getAbundanceYear(sStriolatum)
 
+# I want to rename the abundance column with species name to aid comparison and readibility
+
+iEleganSAY <- dplyr::rename(iElegansAY, iElegans_abundance = ABUNDANCE)
+cPuellaSAY <- 
+lSponsaSAY <- 
+lQuadrimaculataSAY <- 
+sStriolatumSAY <- 
 
 
 
@@ -70,23 +77,33 @@ row1963 <- c(0, 1963)
 row1972 <- c(0, 1972)
 row1974 <- c(0, 1974)
 
-coenigronCompAY <- rbind(row1959, row1960, row1961, row1962, coenigrionAY)
-ischnuraCompAY <- rbind(row1959, row1960, row1961, ischnuraAY)
-lestesCompAY <- rbind(row1959, row1960, row1961, row1962, row1963, lestesAY)
-# libellula will be dealt with differently because it is missing rows within the dataframe
-sympetrumCompAY <- rbind(row1959, row1960, row1961, sympetrumAY)
+cPuellaCompAY <- rbind(row1959, row1960, row1961, row1962, cPuellaSAY)
+iElegansCompAY <- rbind(row1959, row1960, row1961, iElegansSAY)
+lSponsaCompAY <- rbind(row1959, row1960, row1961, row1962, row1963, lSponsaSAY)
+# lQuadrimaculata will be dealt with differently because it is missing rows within the dataframe
+sStriolatumCompAY <- rbind(row1959, row1960, row1961, sStriolatumSAY)
 
-prelibellulaCompAY <- rbind(row1960, row1972, row1974, libellulaAY)
+prelibellulaCompAY <- rbind(row1960, row1972, row1974, lQuadrimaculataSAY)
 # this will add the rows I want, but now in chronological order
-libellulaCompAY <- dplyr::arrange(prelibellulaCompAY, YEAR)
+lQuadrimaculataCompAY <- dplyr::arrange(prelibellulaCompAY, YEAR)
 
 
-# there are species missing from this, they need to be added separately
+# there are species missing from this dataset, they need to be added separately, I will source (and cite) the abundance data
+# also need a vector corresponding to the years
 
-brachytronAbundance <- c(0,0,0,0,0,0,0,0,0,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-pyrrhosomaAbundance <- c(0,0,3,20,18,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-aeshnaAbundance <- c(0,0,0,0,1,2,3,1,1,2,3,1,5,1,2,0,0,0,1,1,1,0,2,1,1,3,1,2,2,2)
+dragonflyYears <- c(1959:1988)
 
+bPratenseAbundance <- c(0,0,0,0,0,0,0,0,0,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+pNymphulaAbundance <- c(0,0,3,20,18,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+aCyaneaAbundance <- c(0,0,0,0,1,2,3,1,1,2,3,1,5,1,2,0,0,0,1,1,1,0,2,1,1,3,1,2,2,2)
+sSanguineumAbundance <- c(0,0,0,0,0,1,0,0,1,0,2,0,1,0,0,1,0,1,4, 11, 3, 0, 1, 9, 6, 10, 4, 9, 3, 4)
+aGrandisAbundance <- c(0,0,0,0,0,0,0,4,0,1,1,0,2,0,2,0,0,0,1,1,0,1,2,1,0,1,1,4,0,1)
+
+bPratenseCompAY <- data.frame(bPratenseAbundance, dragonflyYears)
+pNymphulaCompAY <- data.frame(pNymphulaAbundance, dragonflyYears)
+aCyaneaCompAY <- data.frame(aCyaneaAbundance, dragonflyYears)
+sSanguineumCompAY <- data.frame(sSanguineumAbundance, dragonflyYears)
+aGrandisCompAY <- data.frame(aGrandisAbundance, dragonflyYears)
 
 
 
