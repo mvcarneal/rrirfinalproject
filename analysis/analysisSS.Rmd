@@ -55,11 +55,11 @@ sStriolatumAY <- getAbundanceYear(sStriolatum)
 
 # I want to rename the abundance column with species name to aid comparison and readibility
 
-iEleganSAY <- dplyr::rename(iElegansAY, iElegans_abundance = ABUNDANCE)
-cPuellaSAY <- 
-lSponsaSAY <- 
-lQuadrimaculataSAY <- 
-sStriolatumSAY <- 
+iElegansSAY <- dplyr::rename(iElegansAY, iElegans_abundance = ABUNDANCE)
+cPuellaSAY <- dplyr::rename(cPuellaAY, cPuella_abundance = ABUNDANCE)
+lSponsaSAY <- dplyr::rename(lSponsaAY, lSponsa_abundance = ABUNDANCE)
+lQuadrimaculataSAY <- dplyr::rename(lQuadrimaculataAY, lQuadrimaculata_abundance = ABUNDANCE)
+sStriolatumSAY <- dplyr::rename(sStriolatumAY, sStriolatum_abundance = ABUNDANCE)
 
 
 
@@ -91,7 +91,7 @@ lQuadrimaculataCompAY <- dplyr::arrange(prelibellulaCompAY, YEAR)
 # there are species missing from this dataset, they need to be added separately, I will source (and cite) the abundance data
 # also need a vector corresponding to the years
 
-dragonflyYears <- c(1959:1988)
+YEAR <- c(1959:1988)
 
 bPratenseAbundance <- c(0,0,0,0,0,0,0,0,0,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 pNymphulaAbundance <- c(0,0,3,20,18,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
@@ -99,16 +99,30 @@ aCyaneaAbundance <- c(0,0,0,0,1,2,3,1,1,2,3,1,5,1,2,0,0,0,1,1,1,0,2,1,1,3,1,2,2,
 sSanguineumAbundance <- c(0,0,0,0,0,1,0,0,1,0,2,0,1,0,0,1,0,1,4, 11, 3, 0, 1, 9, 6, 10, 4, 9, 3, 4)
 aGrandisAbundance <- c(0,0,0,0,0,0,0,4,0,1,1,0,2,0,2,0,0,0,1,1,0,1,2,1,0,1,1,4,0,1)
 
-bPratenseCompAY <- data.frame(bPratenseAbundance, dragonflyYears)
-pNymphulaCompAY <- data.frame(pNymphulaAbundance, dragonflyYears)
-aCyaneaCompAY <- data.frame(aCyaneaAbundance, dragonflyYears)
-sSanguineumCompAY <- data.frame(sSanguineumAbundance, dragonflyYears)
-aGrandisCompAY <- data.frame(aGrandisAbundance, dragonflyYears)
+bPratenseCompAY <- data.frame(bPratenseAbundance, YEAR)
+pNymphulaCompAY <- data.frame(pNymphulaAbundance, YEAR)
+aCyaneaCompAY <- data.frame(aCyaneaAbundance, YEAR)
+sSanguineumCompAY <- data.frame(sSanguineumAbundance, YEAR)
+aGrandisCompAY <- data.frame(aGrandisAbundance, YEAR)
+
+# I am going to join these 10 dataframes by the common column year
+# I want year on the far left so I am going to reorder the first dataframe that will determine the order of my join function
+
+bPratenseCompAY2 <- subset(bPratenseCompAY, select = c(2,1))
+
+join1 <- dplyr::left_join(bPratenseCompAY2, pNymphulaCompAY, by= NULL)
+join2 <- dplyr::left_join(join1, aCyaneaCompAY, by = NULL)
+join3 <- dplyr::left_join(join2, sSanguineumCompAY, by = NULL)
+join4 <- dplyr::left_join(join3, aGrandisCompAY, by = NULL)
+join5 <- dplyr::left_join(join4, cPuellaCompAY, by = NULL)
+join6 <- dplyr::left_join(join5, iElegansCompAY, by = NULL)
+join7 <- dplyr::left_join(join6, lSponsaCompAY, by = NULL)
+join8 <- dplyr::left_join(join7, lQuadrimaculataCompAY, by = NULL)
+fullAbundanceDF <- dplyr::left_join(join8, sStriolatumCompAY, by = NULL)
+
+# I want a total for each year
+
+abundanceSums <- data.frame(rowSums(fullAbundanceDF[,c(2,3,4,5,6,7,8,9,10,11)]))
 
 
-
-
-# Damselfly Larval Data
-
-larval_data <- read.csv("~/GitHub/rrirfinalproject/larval_data.csv")
 
