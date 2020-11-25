@@ -53,13 +53,14 @@ lSponsaAY <- getAbundanceYear(lSponsa)
 lQuadrimaculataAY <- getAbundanceYear(lQuadrimaculata)
 sStriolatumAY <- getAbundanceYear(sStriolatum)
 
+
 # I want to rename the abundance column with species name to aid comparison and readibility
 
-iElegansSAY <- dplyr::rename(iElegansAY, iElegans_abundance = ABUNDANCE)
-cPuellaSAY <- dplyr::rename(cPuellaAY, cPuella_abundance = ABUNDANCE)
-lSponsaSAY <- dplyr::rename(lSponsaAY, lSponsa_abundance = ABUNDANCE)
-lQuadrimaculataSAY <- dplyr::rename(lQuadrimaculataAY, lQuadrimaculata_abundance = ABUNDANCE)
-sStriolatumSAY <- dplyr::rename(sStriolatumAY, sStriolatum_abundance = ABUNDANCE)
+iElegansSAY <- dplyr::rename(iElegansAY, iElegansAbundance = ABUNDANCE)
+cPuellaSAY <- dplyr::rename(cPuellaAY, cPuellaAbundance = ABUNDANCE)
+lSponsaSAY <- dplyr::rename(lSponsaAY, lSponsaAbundance = ABUNDANCE)
+lQuadrimaculataSAY <- dplyr::rename(lQuadrimaculataAY, lQuadrimaculataAbundance = ABUNDANCE)
+sStriolatumSAY <- dplyr::rename(sStriolatumAY, sStriolatumAbundance = ABUNDANCE)
 
 
 
@@ -123,6 +124,36 @@ fullAbundanceDF <- dplyr::left_join(join8, sStriolatumCompAY, by = NULL)
 # I want a total for each year
 
 abundanceSums <- data.frame(rowSums(fullAbundanceDF[,c(2,3,4,5,6,7,8,9,10,11)]))
+abundance_year <- cbind(abundanceSums, new_col = YEAR)
+abundanceYearSums <- subset(abundance_year, select = c(2,1))
+
+abunYearSums_1 <- dplyr::rename(abundanceYearSums, year = new_col)
+abunYearsSums <- dplyr::rename(abunYearSums_1, total_abundance = rowSums.fullAbundanceDF...c.2..3..4..5..6..7..8..9..10..11...)
+
+plot(abunYearsSums$year, abunYearsSums$total_abundance)
+
+
+# I want plots for all 10 species
+
+par(mfrow=c(2,5))
+plot(bPratenseCompAY$YEAR, bPratenseCompAY$bPratenseAbundance, main = "Brachytron pratense", xlab = "Year", ylab = "Abundance")
+plot(pNymphulaCompAY$YEAR, pNymphulaCompAY$pNymphulaAbundance, main = "Pyrrhosa nymphula", xlab = "Year", ylab = "Abundance")
+plot(aCyaneaCompAY$YEAR, aCyaneaCompAY$aCyaneaAbundance, main = "Aeshna cyanea", xlab = "Year", ylab = "Abundance")
+plot(sSanguineumCompAY$YEAR, sSanguineumCompAY$sSanguineumAbundance, main = "Sympetrum sanguineum", xlab = "Year", ylab = "Abundance")
+plot(aGrandisCompAY$YEAR, aGrandisCompAY$aGrandisAbundance, main = "Aeshna grandis", xlab = "Year", ylab = "Abundance")
+plot(cPuellaCompAY$YEAR, cPuellaCompAY$cPuellaAbundance, main = "Coenagrion puella", xlab = "Year", ylab = "Abundance")
+plot(iElegansCompAY$YEAR, iElegansCompAY$iElegansAbundance, main = "Ischnura elegans", xlab = "Year", ylab = "Abundance")
+plot(lSponsaCompAY$YEAR, lSponsaCompAY$lSponsaAbundance, main = "Lestes sponsa", xlab = "Year", ylab = "Abundance")
+plot(lQuadrimaculataCompAY$YEAR, lQuadrimaculataCompAY$lQuadrimaculataAbundance, main = "Libellula quadrimaculata", xlab = "Year", ylab = "Abundance")
+plot(sStriolatumCompAY$YEAR, sStriolatumCompAY$sStriolatumAbundance, main = "Sympetrum striolatum", xlab = "Year", ylab = "Abundance")
+
+
+# read in Odonate names, this is a .csv in the github repo
+
+odonata_names <- read.csv("~/GitHub/rrirfinalproject/odonata_names.csv")
+
+
+
 
 
 
