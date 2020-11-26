@@ -137,15 +137,40 @@ plot(abunYearsSums$year, abunYearsSums$total_abundance)
 
 par(mfrow=c(2,5))
 plot(bPratenseCompAY$YEAR, bPratenseCompAY$bPratenseAbundance, main = "Brachytron pratense", xlab = "Year", ylab = "Abundance")
+abline(lm (bPratenseCompAY$bPratenseAbundance ~ bPratenseCompAY$YEAR), col="red")
+
 plot(pNymphulaCompAY$YEAR, pNymphulaCompAY$pNymphulaAbundance, main = "Pyrrhosa nymphula", xlab = "Year", ylab = "Abundance")
+abline(lm (pNymphulaCompAY$pNymphulaAbundance ~ pNymphulaCompAY$YEAR), col="red")
+
 plot(aCyaneaCompAY$YEAR, aCyaneaCompAY$aCyaneaAbundance, main = "Aeshna cyanea", xlab = "Year", ylab = "Abundance")
+abline(lm(aCyaneaCompAY$aCyaneaAbundance ~ aCyaneaCompAY$YEAR), col="red")
+
 plot(sSanguineumCompAY$YEAR, sSanguineumCompAY$sSanguineumAbundance, main = "Sympetrum sanguineum", xlab = "Year", ylab = "Abundance")
+abline(lm(sSanguineumCompAY$sSanguineumAbundance ~ sSanguineumCompAY$YEAR), col="red")
+
 plot(aGrandisCompAY$YEAR, aGrandisCompAY$aGrandisAbundance, main = "Aeshna grandis", xlab = "Year", ylab = "Abundance")
+abline(lm(aGrandisCompAY$aGrandisAbundance ~ aGrandisCompAY$YEAR), col="red")
+
 plot(cPuellaCompAY$YEAR, cPuellaCompAY$cPuellaAbundance, main = "Coenagrion puella", xlab = "Year", ylab = "Abundance")
+abline(lm(cPuellaCompAY$cPuellaAbundance ~ cPuellaCompAY$YEAR), col="red")
+
 plot(iElegansCompAY$YEAR, iElegansCompAY$iElegansAbundance, main = "Ischnura elegans", xlab = "Year", ylab = "Abundance")
+abline(lm(iElegansCompAY$iElegansAbundance ~ iElegansCompAY$YEAR), col="red")
+
 plot(lSponsaCompAY$YEAR, lSponsaCompAY$lSponsaAbundance, main = "Lestes sponsa", xlab = "Year", ylab = "Abundance")
+abline(lm(lSponsaCompAY$lSponsaAbundance ~ lSponsaCompAY$YEAR), col="red")
+
 plot(lQuadrimaculataCompAY$YEAR, lQuadrimaculataCompAY$lQuadrimaculataAbundance, main = "Libellula quadrimaculata", xlab = "Year", ylab = "Abundance")
+abline(lm(lQuadrimaculataCompAY$lQuadrimaculataAbundance ~ lQuadrimaculataCompAY$YEAR), col="red")
+
 plot(sStriolatumCompAY$YEAR, sStriolatumCompAY$sStriolatumAbundance, main = "Sympetrum striolatum", xlab = "Year", ylab = "Abundance")
+abline(lm(sStriolatumCompAY$sStriolatumAbundance ~ sStriolatumCompAY$YEAR), col="red")
+
+
+fitBPratense <- lm(bPratenseCompAY$bPratenseAbundance ~ bPratenseCompAY$YEAR)
+
+
+
 
 
 # read in Odonate names, this is a .csv in the github repo
