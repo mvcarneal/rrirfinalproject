@@ -13,6 +13,8 @@ output: pdf_document
 ## study ID == ''
 ## BioTIME does not have an API, making this necessary
 
+
+DataSingleStudy <- read.csv("~/GitHub/rrirfinalproject/DataSingleStudy")
 rawDragonfly <- `DataSingleStudy`
 
 install.packages('plyr')
@@ -130,10 +132,18 @@ abundanceYearSums <- subset(abundance_year, select = c(2,1))
 abunYearSums_1 <- dplyr::rename(abundanceYearSums, year = new_col)
 abunYearsSums <- dplyr::rename(abunYearSums_1, total_abundance = rowSums.fullAbundanceDF...c.2..3..4..5..6..7..8..9..10..11...)
 
-plot(abunYearsSums$year, abunYearsSums$total_abundance)
 
+par(mfrow=c(1,1))
+plot(abunYearsSums$year, abunYearsSums$total_abundance, xlab = "Year", ylab = "Abundance")
+abline(lm(abunYearsSums$total_abundance ~ abunYearsSums$year), col="red")
 
-# I want plots for all 10 species
+fitTotal <- lm(abunYearsSums$total_abundance ~ abunYearsSums$year)
+
+summary(fitTotal)
+
+pValueTotal <- 0.000162
+
+# I want plots for all 10 species with a trend line
 
 par(mfrow=c(2,5))
 plot(bPratenseCompAY$YEAR, bPratenseCompAY$bPratenseAbundance, main = "Brachytron pratense", xlab = "Year", ylab = "Abundance")
@@ -167,10 +177,47 @@ plot(sStriolatumCompAY$YEAR, sStriolatumCompAY$sStriolatumAbundance, main = "Sym
 abline(lm(sStriolatumCompAY$sStriolatumAbundance ~ sStriolatumCompAY$YEAR), col="red")
 
 
+# I want to see if these are significant, so I am going to save the lm and then I will do a summary of each one
+
 fitBPratense <- lm(bPratenseCompAY$bPratenseAbundance ~ bPratenseCompAY$YEAR)
+summary(fitBPratense)
+pValueBPratense <- 0.5911
 
+fitPNymphula <- lm(pNymphulaCompAY$pNymphulaAbundance ~ pNymphulaCompAY$YEAR)
+summary(fitPNymphula)
+pValuePNymphula <- 0.02333
 
+fitACyanea <- lm(aCyaneaCompAY$aCyaneaAbundance ~ aCyaneaCompAY$YEAR)
+summary(fitACyanea)
+pValueACyanea <- 0.3033
 
+fitSSanguineum <- lm(sSanguineumCompAY$sSanguineumAbundance ~ sSanguineumCompAY$YEAR)
+summary(fitSSanguineum)
+pValueSSanguineum <- 0.00009631
+
+fitAGrandis <- lm(aGrandisCompAY$aGrandisAbundance ~ aGrandisCompAY$YEAR)
+summary(fitAGrandis)
+pValueAGrandis <- 0.1363
+
+fitCPuella <- lm(cPuellaCompAY$cPuellaAbundance ~ cPuellaCompAY$YEAR)
+summary(fitCPuella)
+pValueCPuella <- 8.362e-07
+
+fitIElegans <- lm(iElegansCompAY$iElegansAbundance ~ iElegansCompAY$YEAR)
+summary(fitIElegans)
+pValueIElegans <- 0.103
+
+fitLSponsa <- lm(lSponsaCompAY$lSponsaAbundance ~ lSponsaCompAY$YEAR)
+summary(fitLSponsa)
+pValueLSponsa <- 0.0001868
+
+fitLQuadrimaculata <- lm(lQuadrimaculataCompAY$lQuadrimaculataAbundance ~ lQuadrimaculataCompAY$YEAR)
+summary(fitLQuadrimaculata)
+pValueLQuadrimaculata <- 0.0359
+
+fitSStriolatum <- lm(sStriolatumCompAY$sStriolatumAbundance ~ sStriolatumCompAY$YEAR)
+summary(fitSStriolatum)
+pValueSStriolatum <- 0.9176
 
 
 # read in Odonate names, this is a .csv in the github repo
