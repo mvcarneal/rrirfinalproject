@@ -1,0 +1,71 @@
+---
+title: "Odonate abundance changes in response to the creation of a flood reservoir in a former fen"
+author: Maggie Vincent
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+The invertebrate order Odonata is comprised of at least 5680 freshwater insects and are commonly referred to as damselflies and dragonflies (Kalkman et al. 2008).  
+
+
+The order is of particular interest for their reproductive behaviors, with males of the species utilizing the aedeagus not only for sperm transfer, but also for the removal of sperm already in a female’s storage organs (Waage, 1979).  
+
+
+Destruction of habitation and changes in water quality have led to decreases in species distributions, although extinction is not an immediate worry for many (Kalkman et al. 2008).  
+ 
+
+Although the highest biodiversity of Odonates resides in the Neotropics and where? (Citation), Odonates extend into temperate zones, albeit with less diversification. This project is concerned with East Anglia, a region in eastern England. This area was formerly swampy, or fenland, until it was drained for agricultural use over the last few centuries (DeFries et al. 2004). Habitat changes such as fragmentation and/or loss often lead to decreases in biodiversity (DeFries et al. 2004), as stated above for Odonates. Conservation and preservation attempts over the last century have moved to protect remaining areas and return others back to their original (or something similar). There has been work since the late 1950s in East Anglia to preserve ancient fens with the possibility of reconnecting the remaining fragments into a “Great Fen” (Citation).
+
+# Objectives
+
+The goals of this study can be separated into two main purposes: description of changing (or not) species diversity over more than two decades and a focus on transparency and reproducibility in the workflow.  
+
+
+## Data Source 
+
+The data for this descriptive study is available through BioTIME (biotime.st-andrews.ac.uk/downloadArea.php), a database devoted to biodiversity. The database is dynamic and does not have an API, making reproducibility via the database a step more difficult. The dataset itself is constant, but its online source changing. The dataset was not originally representative of the first study’s findings, and required significant manipulation. The methods and resulting implications for reproducibility will be discussed in more detail in later sections.  
+
+ 
+
+[Head of original data set?] – head() 
+
+ 
+
+## Study Site 
+
+The work was carried out at Woodwalton Fen (Long, Lat) in Huntingdon, England, from 1959 to 1988. The area was primarily an ancient fen, or a wetland, until most of the area was drained in the 1800s for agricultural use. In the mid-1900s the study area was restructured as a flood reservoir, recreating the wetland aspect. The original study followed Odonata species to characterize territorial changes and patterns throughout the project (Citation).  
+
+[Images of Woodwalton Fen] 
+
+
+## Approach 
+
+The original study characterized the return and territoriality of dragonflies and damselflies at the site. In this study, I seek to better characterize the significance of species-specific changes over the study period in order to tease apart any possible changes in overall abundance. The main questions can be summarized as follows:
+
+# Methods
+
+The data used is publicly available for download and use from BioTIME (citation) or from the Github repository hosting the analytical pipeline for this project. The data was manipulated (with an original retained) in R Version 4.0.2 with the additional packages ‘plyr’ and ‘dplyr’. The manipulated dataset is also available on the aforementioned Github repository, along with the code used in the analysis folder. As the dataset was previously compiled and published, the methods for this project will concern the approach taken and code utilized. 
+
+
+Base, plyr and dplyr were utilized in an attempt to keep the number of packages small and the threshold for reproducibility lower. The latter two aided in the manipulation of the dataset.
+
+# Results
+
+# Discussion
+
+# Reproducibility
+
+The unmanipulated dataset and analysis are hosted on a Github repository (link), along with the manipulated dataset and corresponding code, figures, license information and a Docker file. The dataset was not called for using an API, making it necessary to download externally and import into R. The original directions are documented in the analysis (on Github) and the unmanipulated dataset can also be downloaded from the Github repository. As mentioned earlier, the original dataset had some issues that had to be resolved prior to analysis. Abundances of “zero” were not entered into the dataset, leaving that year out of the dataset entirely. Once these were returned the dataset, further manipulation and analysis was possible. The analysis, an R markdown file, details how to download the dataset and shows the code for manipulation in order to minimize any reproducibility issues and show transparency.
+
+# Conclusion
+
+# References
+
+Kalkman, V. J., Clausnitzer V., Dijkstra K. B., Orr A. G., Paulson D. R., van Tol J. (2008) Global diversity of dragonflies (Odonata) in freshwater. Hydrobiologia, 595, 351-363. 
+
+Waage, J. K. (1979) Dual function of the damselfly penis: Sperm removal and transfer. Science, 203:4383, 916-918.
