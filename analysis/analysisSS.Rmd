@@ -220,9 +220,46 @@ summary(fitSStriolatum)
 pValueSStriolatum <- 0.9176
 
 
+
+# I want to know how many species there are in a given year, using the nrow function from base
+# I will save each as with a corresponding year identifier because I have not yet decided what format I want them all in (dataframe, table, etc.)
+
+ASpecies <- length(which(fullAbundanceDF[1,2:11] != 0))
+BSpecies <- length(which(fullAbundanceDF[2,2:11] != 0))
+CSpecies <- length(which(fullAbundanceDF[3,2:11] != 0))
+DSpecies <- length(which(fullAbundanceDF[4,2:11] != 0))
+ESpecies <- length(which(fullAbundanceDF[5,2:11] != 0))
+FSpecies <- length(which(fullAbundanceDF[6,2:11] != 0))
+GSpecies <- length(which(fullAbundanceDF[7,2:11] != 0))
+HSpecies <- length(which(fullAbundanceDF[8,2:11] != 0))
+ISpecies <- length(which(fullAbundanceDF[9,2:11] != 0))
+JSpecies <- length(which(fullAbundanceDF[10,2:11] != 0))
+KSpecies <- length(which(fullAbundanceDF[11,2:11] != 0))
+LSpecies <- length(which(fullAbundanceDF[12,2:11] != 0))
+MSpecies <- length(which(fullAbundanceDF[13,2:11] != 0))
+NSpecies <- length(which(fullAbundanceDF[14,2:11] != 0))
+OSpecies <- length(which(fullAbundanceDF[15,2:11] != 0))
+PSpecies <- length(which(fullAbundanceDF[16,2:11] != 0))
+QSpecies <- length(which(fullAbundanceDF[17,2:11] != 0))
+RSpecies <- length(which(fullAbundanceDF[18,2:11] != 0))
+SSpecies <- length(which(fullAbundanceDF[19,2:11] != 0))
+TSpecies <- length(which(fullAbundanceDF[20,2:11] != 0))
+USpecies <- length(which(fullAbundanceDF[21,2:11] != 0))
+VSpecies <- length(which(fullAbundanceDF[22,2:11] != 0))
+XSpecies <- length(which(fullAbundanceDF[23,2:11] != 0))
+YSpecies <- length(which(fullAbundanceDF[24,2:11] != 0))
+ZSpecies <- length(which(fullAbundanceDF[25,2:11] != 0))
+AASpecies <- length(which(fullAbundanceDF[26,2:11] != 0))
+ABSpecies <- length(which(fullAbundanceDF[27,2:11] != 0))
+ACSpecies <- length(which(fullAbundanceDF[28,2:11] != 0))
+ADSpecies <- length(which(fullAbundanceDF[29,2:11] != 0))
+AESpecies <- length(which(fullAbundanceDF[30,2:11] != 0))
+
+
+
 # read in Odonate names, this is a .csv in the github repo
 
-odonata_names <- read.csv("~/GitHub/rrirfinalproject/odonata_names.csv")
+odonata_names <- read.table("~/GitHub/rrirfinalproject/odonata_names.csv")
 
 
 
