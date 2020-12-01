@@ -1,0 +1,11 @@
+FROM rocker/r-ver:4.0.2
+
+ARG WHEN
+
+RUN R -e "options(repos = /
+	list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2020-12-01/')): \
+	install.packages('plyr', 'dplyr')"
+
+COPY analysis.RMD /rrirfinalproject/analysis/analysis.RMD
+
+CMD R -e "source(/rrirfinalproject/analysis/analysis.RMD')"
