@@ -1,0 +1,12 @@
+﻿SPECIES,p-value
+Ischnura elegans,0.103
+Sympetrum striolatum,0.9176
+Libellula quadrimaculata,0.0359*
+Coenagrion puella,0.0000008362***
+Aeshna cyanea,0.3033
+Pyrrhosoma nymphula,0.02333*
+Lestes sponsa,0.0001868***
+Sympetrum sanguineum,0.00009631***
+Aeshna grandis,0.1363
+Brachytron pratense,0.5911
+Combined,0.000162

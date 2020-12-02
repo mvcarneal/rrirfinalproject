@@ -221,7 +221,7 @@ pValueSStriolatum <- 0.9176
 
 
 
-# I want to know how many species there are in a given year, using the nrow function from base
+# I want to know how many species there are in a given year, subsetting using the which function and finding the length of that subset
 # I will save each as with a corresponding year identifier because I have not yet decided what format I want them all in (dataframe, table, etc.)
 
 ASpecies <- length(which(fullAbundanceDF[1,2:11] != 0))
@@ -272,7 +272,9 @@ plot(speciesByYear$YEAR, speciesByYear$speciesChrono, xlab = "Year", ylab = "Spe
 
 odonata_names <- read.table("~/GitHub/rrirfinalproject/odonata_names.csv")
 
+# weird character in genus column name, need to rename it, dplyr function
 
+odonata_Woodwalton <- dplyr::rename(odonata_names, GENUS = ï..GENUS)
 
 
 

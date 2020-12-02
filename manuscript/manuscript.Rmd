@@ -3,7 +3,7 @@ title: "Odonate abundance changes in response to the creation of a flood reservo
 author: Maggie Vincent
 output:
   pdf_document:
-    fig_caption: yes
+    fig_caption: true
 
 ---
 
@@ -55,7 +55,7 @@ head(DataSingleStudy)
 
 The work was carried out at Woodwalton Fen (Long, Lat) in Huntingdon, England, from 1959 to 1988. The area was primarily an ancient fen, or a wetland, until most of the area was drained in the 1800s for agricultural use. In the mid-1900s the study area was restructured as a flood reservoir, recreating the wetland aspect. The original study followed Odonata species to characterize territorial changes and patterns throughout the project (Citation).  
 
-![Map of eastern England with Woodwalton Fen marked.](Woodwalton_Fen_England.jpg)
+![**Figure 1.** Map of eastern England with Woodwalton Fen marked.](Woodwalton_Fen_England.jpg)
 
 
 ## Approach 
@@ -160,12 +160,30 @@ abundanceYearSums <- subset(abundance_year, select = c(2,1))
 
 abunYearSums_1 <- dplyr::rename(abundanceYearSums, year = new_col)
 abunYearsSums <- dplyr::rename(abunYearSums_1, total_abundance = rowSums.fullAbundanceDF...c.2..3..4..5..6..7..8..9..10..11...)
+```
 
 
+The damselflies and dragonflies in this study are listed in Table 1 for reference. The figure below (Fig. 2), is a linear regression model of the maximum abundance of males in a single day from 1959  to 1988. The abundance corresponds to the sum of the ten species in Table 1 and the p-value for the model was 0.000162.
+
+
+```{r, echo=FALSE,}
+
+# weird character in genus column name, need to rename it, dplyr function
+
+odonata_Woodwalton <- dplyr::rename(odonata_names, GENUS = ï..GENUS)
+
+knitr::kable(odonata_Woodwalton, caption = 'Table 1. Species and common names of ten Odonates found at Woodwalton Fen between 1959 and 1988.')
+
+```
+
+```{r, echo=FALSE, fig.align=center, fig.cap='**Figure 2** Linear model of abundance of all ten species from 1959 to 1988. p-value = 0.000162 }
 par(mfrow=c(1,1))
 plot(abunYearsSums$year, abunYearsSums$total_abundance, xlab = "Year", ylab = "Abundance")
 abline(lm(abunYearsSums$total_abundance ~ abunYearsSums$year), col="red")
+```
 
+
+```{r, echo=TRUE}
 fitTotal <- lm(abunYearsSums$total_abundance ~ abunYearsSums$year)
 
 summary(fitTotal)
@@ -173,6 +191,109 @@ summary(fitTotal)
 pValueTotal <- 0.000162
 
 ```
+
+
+```{r, echo=FALSE, fig.cap=paste("Figure 3. Abundances broken down by species with line of best fit.") }
+par(mfrow=c(2,5))
+plot(bPratenseCompAY$YEAR, bPratenseCompAY$bPratenseAbundance, main = "Brachytron pratense", xlab = "Year", ylab = "Abundance")
+abline(lm (bPratenseCompAY$bPratenseAbundance ~ bPratenseCompAY$YEAR), col="red")
+
+plot(pNymphulaCompAY$YEAR, pNymphulaCompAY$pNymphulaAbundance, main = "Pyrrhosa nymphula", xlab = "Year", ylab = "Abundance")
+abline(lm (pNymphulaCompAY$pNymphulaAbundance ~ pNymphulaCompAY$YEAR), col="red")
+
+plot(aCyaneaCompAY$YEAR, aCyaneaCompAY$aCyaneaAbundance, main = "Aeshna cyanea", xlab = "Year", ylab = "Abundance")
+abline(lm(aCyaneaCompAY$aCyaneaAbundance ~ aCyaneaCompAY$YEAR), col="red")
+
+plot(sSanguineumCompAY$YEAR, sSanguineumCompAY$sSanguineumAbundance, main = "Sympetrum sanguineum", xlab = "Year", ylab = "Abundance")
+abline(lm(sSanguineumCompAY$sSanguineumAbundance ~ sSanguineumCompAY$YEAR), col="red")
+
+plot(aGrandisCompAY$YEAR, aGrandisCompAY$aGrandisAbundance, main = "Aeshna grandis", xlab = "Year", ylab = "Abundance")
+abline(lm(aGrandisCompAY$aGrandisAbundance ~ aGrandisCompAY$YEAR), col="red")
+
+plot(cPuellaCompAY$YEAR, cPuellaCompAY$cPuellaAbundance, main = "Coenagrion puella", xlab = "Year", ylab = "Abundance")
+abline(lm(cPuellaCompAY$cPuellaAbundance ~ cPuellaCompAY$YEAR), col="red")
+
+plot(iElegansCompAY$YEAR, iElegansCompAY$iElegansAbundance, main = "Ischnura elegans", xlab = "Year", ylab = "Abundance")
+abline(lm(iElegansCompAY$iElegansAbundance ~ iElegansCompAY$YEAR), col="red")
+
+plot(lSponsaCompAY$YEAR, lSponsaCompAY$lSponsaAbundance, main = "Lestes sponsa", xlab = "Year", ylab = "Abundance")
+abline(lm(lSponsaCompAY$lSponsaAbundance ~ lSponsaCompAY$YEAR), col="red")
+
+plot(lQuadrimaculataCompAY$YEAR, lQuadrimaculataCompAY$lQuadrimaculataAbundance, main = "Libellula quadrimaculata", xlab = "Year", ylab = "Abundance")
+abline(lm(lQuadrimaculataCompAY$lQuadrimaculataAbundance ~ lQuadrimaculataCompAY$YEAR), col="red")
+
+plot(sStriolatumCompAY$YEAR, sStriolatumCompAY$sStriolatumAbundance, main = "Sympetrum striolatum", xlab = "Year", ylab = "Abundance")
+abline(lm(sStriolatumCompAY$sStriolatumAbundance ~ sStriolatumCompAY$YEAR), col="red")
+
+
+```
+
+
+```{r, echo=FALSE}
+library('plyr')
+library('dplyr')
+
+names_p_values <- read.csv("~/GitHub/rrirfinalproject/analysis/names_p_values.csv")
+
+# strange character in column name for species
+
+corrected_names_p_values <- dplyr::rename(names_p_values, Species = ï..SPECIES)
+
+
+knitr::kable(corrected_names_p_values, caption = 'Table 2. p-values from the LM for each species and all species combined shown in Figure 2. Significance shown with asterisks.')
+
+```
+
+
+```{r, echo=FALSE, fig.cap="Figure 4. Number of species in each year of the study period. Note that this is not a comprehensive list of all Odonates at the site, this will be addressed in the discussion."}
+# I want to know how many species there are in a given year, subsetting using the which function and finding the length of that subset
+# I will save each as with a corresponding year identifier because I have not yet decided what format I want them all in (dataframe, table, etc.)
+
+ASpecies <- length(which(fullAbundanceDF[1,2:11] != 0))
+BSpecies <- length(which(fullAbundanceDF[2,2:11] != 0))
+CSpecies <- length(which(fullAbundanceDF[3,2:11] != 0))
+DSpecies <- length(which(fullAbundanceDF[4,2:11] != 0))
+ESpecies <- length(which(fullAbundanceDF[5,2:11] != 0))
+FSpecies <- length(which(fullAbundanceDF[6,2:11] != 0))
+GSpecies <- length(which(fullAbundanceDF[7,2:11] != 0))
+HSpecies <- length(which(fullAbundanceDF[8,2:11] != 0))
+ISpecies <- length(which(fullAbundanceDF[9,2:11] != 0))
+JSpecies <- length(which(fullAbundanceDF[10,2:11] != 0))
+KSpecies <- length(which(fullAbundanceDF[11,2:11] != 0))
+LSpecies <- length(which(fullAbundanceDF[12,2:11] != 0))
+MSpecies <- length(which(fullAbundanceDF[13,2:11] != 0))
+NSpecies <- length(which(fullAbundanceDF[14,2:11] != 0))
+OSpecies <- length(which(fullAbundanceDF[15,2:11] != 0))
+PSpecies <- length(which(fullAbundanceDF[16,2:11] != 0))
+QSpecies <- length(which(fullAbundanceDF[17,2:11] != 0))
+RSpecies <- length(which(fullAbundanceDF[18,2:11] != 0))
+SSpecies <- length(which(fullAbundanceDF[19,2:11] != 0))
+TSpecies <- length(which(fullAbundanceDF[20,2:11] != 0))
+USpecies <- length(which(fullAbundanceDF[21,2:11] != 0))
+VSpecies <- length(which(fullAbundanceDF[22,2:11] != 0))
+XSpecies <- length(which(fullAbundanceDF[23,2:11] != 0))
+YSpecies <- length(which(fullAbundanceDF[24,2:11] != 0))
+ZSpecies <- length(which(fullAbundanceDF[25,2:11] != 0))
+AASpecies <- length(which(fullAbundanceDF[26,2:11] != 0))
+ABSpecies <- length(which(fullAbundanceDF[27,2:11] != 0))
+ACSpecies <- length(which(fullAbundanceDF[28,2:11] != 0))
+ADSpecies <- length(which(fullAbundanceDF[29,2:11] != 0))
+AESpecies <- length(which(fullAbundanceDF[30,2:11] != 0))
+
+# number of species in chronological order
+# I'll reuse the years vector I created earlier to make a data.frame
+
+speciesChrono <- c(ASpecies, BSpecies, CSpecies, DSpecies, ESpecies, FSpecies, GSpecies, HSpecies, ISpecies, JSpecies, KSpecies, LSpecies, MSpecies, NSpecies, OSpecies, PSpecies, QSpecies, RSpecies, SSpecies, TSpecies, USpecies, VSpecies, XSpecies, YSpecies, ZSpecies, AASpecies, ABSpecies, ACSpecies, ADSpecies, AESpecies)
+
+speciesByYear <- data.frame(YEAR, speciesChrono)
+
+# look at it graphically
+
+par(mfrow=c(1,1))
+plot(speciesByYear$YEAR, speciesByYear$speciesChrono, xlab = "Year", ylab = "Species Number")
+
+```
+
 
 # Discussion
 
