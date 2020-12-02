@@ -297,6 +297,8 @@ plot(speciesByYear$YEAR, speciesByYear$speciesChrono, xlab = "Year", ylab = "Spe
 
 # Discussion
 
+As seen in Table 2, five of the ten species modelled changed significantly in their abundances over the study period. Two of those, *P. nymphula* and *L. quadrimaculata* decreased over the study period, with *P. nymphula* no longer reported starting in the mid-sixties (Fig. 3). 
+
 # Reproducibility
 
 The unmanipulated dataset and analysis are hosted on a Github repository (linked in the Methods section), along with the manipulated dataset and corresponding code, figures, license information and a Docker file. The dataset was not called for using an API, making it necessary to download externally and import into R. The original directions are documented in the analysis (on Github) and the unmanipulated dataset can also be downloaded from the Github repository. As mentioned earlier, the original dataset had some issues that had to be resolved prior to analysis. Abundances of “zero” were not entered into the dataset, leaving that year out of the dataset entirely. Several species were also left out, but using the orignal study were returned to the data set. An image from the original study is in the analysis folder on the Github repository for easy reference (Morris, 1991). Once these were returned the dataset, further manipulation and analysis was possible. The analysis, an R markdown file, details how to download the dataset and shows the code for manipulation in order to minimize any reproducibility issues and show transparency.
