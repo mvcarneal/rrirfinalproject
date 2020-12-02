@@ -255,6 +255,17 @@ ACSpecies <- length(which(fullAbundanceDF[28,2:11] != 0))
 ADSpecies <- length(which(fullAbundanceDF[29,2:11] != 0))
 AESpecies <- length(which(fullAbundanceDF[30,2:11] != 0))
 
+# number of species in chronological order
+# I'll reuse the years vector I created earlier to make a data.frame
+
+speciesChrono <- c(ASpecies, BSpecies, CSpecies, DSpecies, ESpecies, FSpecies, GSpecies, HSpecies, ISpecies, JSpecies, KSpecies, LSpecies, MSpecies, NSpecies, OSpecies, PSpecies, QSpecies, RSpecies, SSpecies, TSpecies, USpecies, VSpecies, XSpecies, YSpecies, ZSpecies, AASpecies, ABSpecies, ACSpecies, ADSpecies, AESpecies)
+
+speciesByYear <- data.frame(YEAR, speciesChrono)
+
+# look at it graphically
+
+par(mfrow=c(1,1))
+plot(speciesByYear$YEAR, speciesByYear$speciesChrono, xlab = "Year", ylab = "Species Number")
 
 
 # read in Odonate names, this is a .csv in the github repo
