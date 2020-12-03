@@ -1,0 +1,5 @@
+context("5")
+
+test_that("5", 
+	expect_type(names_p_values, 'list')
+)

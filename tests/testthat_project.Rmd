@@ -1,0 +1,13 @@
+install.packages('knitr')
+install.packages('testthat')
+
+library(knitr)
+library(testthat)
+knitr::knit('manuscript.Rmd', tangle=TRUE)
+source('manuscript.R')
+testthat::test_file('tests/testthat/test-5.R')
+testthat::test_file('tests/testthat/test-6.R')
+system('rm manuscript.R')
+
+
+

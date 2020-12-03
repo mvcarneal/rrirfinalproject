@@ -1,0 +1,10 @@
+language: r
+os: Microsoft Windows 10 Home
+dist: xenial
+r:
+  -oldrel
+  -release
+  -devel
+install: skip
+scipt:
+  - R -e "source(tests/testthat.Rmd)"

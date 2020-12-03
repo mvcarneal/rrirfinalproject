@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, echo=FALSE}
+```{r 1, echo=FALSE}
 install.packages('plyr')
 install.packages('dplyr')
 ```
@@ -71,7 +71,7 @@ Base, plyr and dplyr were utilized in an attempt to keep the number of packages 
 
 # Results
 
-```{r, echo=FALSE}
+```{r 2, echo=FALSE}
 library('plyr')
 library('dplyr')
 
@@ -166,7 +166,7 @@ abunYearsSums <- dplyr::rename(abunYearSums_1, total_abundance = rowSums.fullAbu
 The damselflies and dragonflies in this study are listed in Table 1 for reference. The figure below (Fig. 2), is a linear regression model of the maximum abundance of males in a single day from 1959  to 1988. The abundance corresponds to the sum of the ten species in Table 1 and the p-value for the model was 0.000162. Figure 3 is the ten LM of the corresponding species, with p-values shown in Table 2. Figure 4 is a model of the total number of species per year over the study period. It does not have a fitted line or a p-value for reasons that will be discussed later. 
 
 
-```{r, echo=FALSE,}
+```{r 3, echo=FALSE,}
 
 # weird character in genus column name, need to rename it, dplyr function
 
@@ -183,7 +183,7 @@ abline(lm(abunYearsSums$total_abundance ~ abunYearsSums$year), col="red")
 ```
 
 
-```{r, echo=TRUE}
+```{r 4, echo=TRUE}
 fitTotal <- lm(abunYearsSums$total_abundance ~ abunYearsSums$year)
 
 summary(fitTotal)
@@ -229,7 +229,7 @@ abline(lm(sStriolatumCompAY$sStriolatumAbundance ~ sStriolatumCompAY$YEAR), col=
 ```
 
 
-```{r, echo=FALSE}
+```{r 5, echo=FALSE}
 library('plyr')
 library('dplyr')
 
@@ -245,7 +245,7 @@ knitr::kable(corrected_names_p_values, caption = 'Table 2. p-values from the LM 
 ```
 
 
-```{r, echo=FALSE, fig.cap="Figure 4. Number of species in each year of the study period. Note that this is not a comprehensive list of all Odonates at the site, this will be addressed in the discussion."}
+```{r 6, echo=FALSE, fig.cap="Figure 4. Number of species in each year of the study period. Note that this is not a comprehensive list of all Odonates at the site, this will be addressed in the discussion."}
 # I want to know how many species there are in a given year, subsetting using the which function and finding the length of that subset
 # I will save each as with a corresponding year identifier because I have not yet decided what format I want them all in (dataframe, table, etc.)
 
