@@ -297,19 +297,30 @@ plot(speciesByYear$YEAR, speciesByYear$speciesChrono, xlab = "Year", ylab = "Spe
 
 # Discussion
 
-As seen in Table 2, five of the ten species modelled changed significantly in their abundances over the study period. Two of those, *P. nymphula* and *L. quadrimaculata* decreased over the study period, with *P. nymphula* no longer reported starting in the mid-sixties (Fig. 3). 
+Taken together, the abundance of all ten species had a clear upward trend in abundance from 1959 to 1988 (Fig. 2). When modeled, the change in abundance was significant (Table 2), indicating the pond construction at Woodwalton Fen increased Odonate abundance. In order to see if certain species were driving these abundance changes, each species was analyzed with a simple linear regression model (Fig. 3) and fitted with a line of best fit. Of the ten species, five had significant changes in abundance over the study period (Table 2), indicating not all species were responsible for the overall change in abundance. Three species had significant increases in abundance, *C. puella*, *S. Sanguineum*, and *L. sponsa*. Interestingly, two species had significant downtrends, *L. quadrimaculata* started at over 150 individuals and dropped to less than a third of that for the last decade of the study period. *P. nymphula* was also indicated as a significant abundance decrease in the model, but with a smaller peak abundance (~20), the results should be taken with a grain of salt. Of the ten species, six of them had peak abundances of less than 25, meaning errors in field observations could easily sway the findings. This should be considered in the species with a significant decrease (*P. nymphula*) and possibly *B. pratense*. The peak abundance for this species was two, with the species not reported after the mid-seventies. While not significant for the abundance patterns objectives, it will be interesting when compared later against current citizen science. 
+
+Figure 4 shows the number of species per year, corresponding to the final objective concerning species diversity and richness. The model shows a period of early, rapid colonization and then a maintenance of eight of the ten species. However, upon consultation with the original study (Moore, 1991), it became apparent that the ten species were not the only ones seen at Woodwalton Fen over the study period. As such, Figure 4 cannot be considered a comprehensive description of Odonate species diversity at the site. Further analysis considering evenness and richness were halted so as to not mischaracterize the site. The original study, however, did mention a similar pattern of rapid colonization early on, potentially holding with this study’s findings of a subset of the species.
+
+Due to the time in between the original study and this one (~30 years), current citizen science from iNaturalist (https://www.inaturalist.org/, via GBIf, https://www.gbif.org/) was incorporated merely out of curiosity of the researcher. This data is not meant as a conclusive determination of current Odonate diversity at Woodwalton Fen (52.4433623, -0.2081061), but an incorporation of what people have found at the site in 2019 and 2020. Four species were listed on the iNaturalist species list for Woodwalton Fen (https://www.inaturalist.org/places/woodwalton-fen). These species were *C. puella* (British, 2020), *S. sanguineum* (Ueda, 2020), *L. quadrimaculata* (Ueda, 2020), and *B. pratense* (Ueda, 2020).
+
+This project was inherently limited by the structure and lack of completeness of the data set obtained. Perhaps the most important conclusion of this project is the forethought required in how data is collected and databased for future use. Morris, the original researcher, collected this information in a time when these considerations did not need to be taken, as open source data sets were certainly not on the average researcher's mind. While this study is limited in its analytic ability, the author does not intend to masquerade the results as such. Much of the ecological information needed in order to determine the most important factors in *Odonata* diversity (vegetation, pond area, scrub management as possibilities) is not available. Therefore, the findings of the original study cannot be expanded upon in an ecological sense. It also showcases the difficulty in finding representative and complete data sets, with the admission that this data set might not have been the best choice, at least not on its own.
+
 
 # Reproducibility
 
 The unmanipulated dataset and analysis are hosted on a Github repository (linked in the Methods section), along with the manipulated dataset and corresponding code, figures, license information and a Docker file. The dataset was not called for using an API, making it necessary to download externally and import into R. The original directions are documented in the analysis (on Github) and the unmanipulated dataset can also be downloaded from the Github repository. As mentioned earlier, the original dataset had some issues that had to be resolved prior to analysis. Abundances of “zero” were not entered into the dataset, leaving that year out of the dataset entirely. Several species were also left out, but using the orignal study were returned to the data set. An image from the original study is in the analysis folder on the Github repository for easy reference (Morris, 1991). Once these were returned the dataset, further manipulation and analysis was possible. The analysis, an R markdown file, details how to download the dataset and shows the code for manipulation in order to minimize any reproducibility issues and show transparency.
 
+
 # Conclusions
 
+The construction of the area as a flood reservoir was successful in increasing Odonate species at the fen and in increasing the overall abundance of Odonates in the area.  Additionally, while not certain, there is possibility that the  trend is that of a rapid and early colonization by Odonates. If true, this could be good news for places around the world with degraded wetlands. If fauna and flora can recolonize quickly after changes are made to return land to more closely resemble its original form, we have hope for the reclamation of former cropland. Drainage of wetlands or clearance of forests for agricultural use is widespread both temporally and geographically, with about 1/3 of global land under agricultural use (DeFries et al. 2004). With many nations and localities considering the environmental trade-offs of land-use for agriculture, success stories like the Odonates in Woodwalton Fen are beneficial. 
 
+These fens (as a type of wetland) provide multiple ecosystem services, biodiversity, water quality management, flood management, and carbon storage (Zedler & Kercher, 2005). 
 
-This project was inherently limited by the structure and lack of completeness of the data set obtained. Perhaps the most important conclusion of this project is the forethought required in how data is collected and databased for future use. Morris, the original researcher, collected this information in a time when these considerations did not need to be taken, as open source data sets were certainly not on the average researcher's mind. While this study is limited in its analytical ability, the author does not intend to masquerade the results as such. Much of the ecological information needed in order to determine the most important factors in *Odonata* diversity (vegetation, pond area, scrub management) is not available. Therefore, the findings of the original study cannot be expanded upon in an ecological sense. It also showcases the difficulty in finding representative and complete data sets, with the admission that this data set might not have been the best choice, at least not on its own. 
 
 # References
+
+British Dragonfly Society Recording Scheme (2020). Dragonfly records from the British Dragonfly Society Recording Scheme. Occurrence dataset https://doi.org/10.15468/cuyjyi accessed via GBIF.org on 2020-12-03.
 
 Dornela M, Antao LH, Moyes F, Bates A. E., *et al.* BioTIME: A database of biodiversity time series for the Anthropocene. *Global Ecol Biogeogr.* 2018; 27:760-786. https://doi.org/10.1111/geb.12729
 
@@ -317,6 +328,13 @@ Kalkman, V. J., Clausnitzer V., Dijkstra K. B., Orr A. G., Paulson D. R., van To
 
 Moore, N. W. (1991) The development of dragonfly communities and the consequences of territorial behavior: a 27 year study on small ponds at Woodwalton Fen, Cambridgeshire, United Kingdom. *Odonatologica*, **20**(2), 203-231.
 
+Morris, J., Gowing D. J. G., Mills, J., Dunderdale, J. A. L. (2000) Reconciling agricultural economic and environmental objectives: the case of recreating wetlands in the Fenland area of Eastern England. *Agriculture, Ecosystems and Environment*, **79**, 245-257.
+
+Ueda K (2020). iNaturalist Research-grade Observations. iNaturalist.org. Occurrence dataset https://doi.org/10.15468/ab3s5x accessed via GBIF.org on 2020-12-03
+
 Waage, J. K. (1979) Dual function of the damselfly penis: Sperm removal and transfer. *Science*, **203**:4383, 916-918.
 
 The Wildlife Trusts (n.d.) About the Great Fen. https://www.greatfen.org.uk/about-great-fen
+
+Zedler, J. B., Kercher, S. (2005) Wetland Resources: Status, trends, ecosystem services, and restorability. *Annu. Rev. Environ. Resour.*, **30**, 39-74.
+
