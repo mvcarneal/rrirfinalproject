@@ -163,7 +163,7 @@ abunYearsSums <- dplyr::rename(abunYearSums_1, total_abundance = rowSums.fullAbu
 ```
 
 
-The damselflies and dragonflies in this study are listed in Table 1 for reference. The figure below (Fig. 2), is a linear regression model of the maximum abundance of males in a single day from 1959  to 1988. The abundance corresponds to the sum of the ten species in Table 1 and the p-value for the model was 0.000162.
+The damselflies and dragonflies in this study are listed in Table 1 for reference. The figure below (Fig. 2), is a linear regression model of the maximum abundance of males in a single day from 1959  to 1988. The abundance corresponds to the sum of the ten species in Table 1 and the p-value for the model was 0.000162. Figure 3 is the ten LM of the corresponding species, with p-values shown in Table 2. Figure 4 is a model of the total number of species per year over the study period. It does not have a fitted line or a p-value for reasons that will be discussed later. 
 
 
 ```{r, echo=FALSE,}
@@ -315,7 +315,7 @@ The unmanipulated dataset and analysis are hosted on a Github repository (linked
 
 The construction of the area as a flood reservoir was successful in increasing Odonate species at the fen and in increasing the overall abundance of Odonates in the area.  Additionally, while not certain, there is possibility that the  trend is that of a rapid and early colonization by Odonates. If true, this could be good news for places around the world with degraded wetlands. If fauna and flora can recolonize quickly after changes are made to return land to more closely resemble its original form, we have hope for the reclamation of former cropland. Drainage of wetlands or clearance of forests for agricultural use is widespread both temporally and geographically, with about 1/3 of global land under agricultural use (DeFries et al. 2004). With many nations and localities considering the environmental trade-offs of land-use for agriculture, success stories like the Odonates in Woodwalton Fen are beneficial. 
 
-These fens (as a type of wetland) provide multiple ecosystem services, biodiversity, water quality management, flood management, and carbon storage (Zedler & Kercher, 2005). 
+These fens (as a type of wetland) provide multiple ecosystem services, biodiversity, water quality management, flood management, and carbon storage (Zedler & Kercher, 2005). They are also excellent resources for wildlife hobbyists and local residents as nature reserves. Local residents may be particularly important in the preservation and conservation of fens, as they are the humans most immediately affected by ecosystem changes. 
 
 
 # References
