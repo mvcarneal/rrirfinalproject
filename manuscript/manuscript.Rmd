@@ -198,7 +198,7 @@ par(mfrow=c(2,5))
 plot(bPratenseCompAY$YEAR, bPratenseCompAY$bPratenseAbundance, main = "Brachytron pratense", xlab = "Year", ylab = "Abundance")
 abline(lm (bPratenseCompAY$bPratenseAbundance ~ bPratenseCompAY$YEAR), col="red")
 
-plot(pNymphulaCompAY$YEAR, pNymphulaCompAY$pNymphulaAbundance, main = "Pyrrhosa nymphula", xlab = "Year", ylab = "Abundance")
+plot(pNymphulaCompAY$YEAR, pNymphulaCompAY$pNymphulaAbundance, main = "Pyrrhosoma nymphula", xlab = "Year", ylab = "Abundance")
 abline(lm (pNymphulaCompAY$pNymphulaAbundance ~ pNymphulaCompAY$YEAR), col="red")
 
 plot(aCyaneaCompAY$YEAR, aCyaneaCompAY$aCyaneaAbundance, main = "Aeshna cyanea", xlab = "Year", ylab = "Abundance")
