@@ -37,7 +37,7 @@ The goals of this study can be separated into two main purposes: description of 
 * Do certain species seem to suffer upon the introduction of others?
   + How does this match up with current citizen science?
   
-The first three main objectives will be answered from the dataset from the original study (Morris, 1991). The final sub-bullet is not meant to be answered with true rigor, but as an interesting way to include citizen science. It is not expected to be comprehensive or a full picture of current Odonate diversity at the study site.
+The first three main objectives will be answered from the dataset from the original study (Morris, 1991). The final sub-bullet is not meant to be answered with true rigor and was not an original objective proposed, but is an interesting way to include citizen science. It is not expected to be comprehensive or a full picture of current Odonate diversity at the study site.
 
 
 ## Data Source 
