@@ -1,5 +1,5 @@
 language: r
-os: Microsoft Windows 10 Home
+os: linux
 dist: xenial
 r:
   -oldrel
